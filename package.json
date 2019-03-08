@@ -1,0 +1,22 @@
+{
+  "name": "prog_questions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "additionUsingBinary.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server -p 9001 -a localhost"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeffkillian/prog_questions.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeffkillian/prog_questions/issues"
+  },
+  "homepage": "https://github.com/jeffkillian/prog_questions#readme",
+  "dependencies": {},
+  "devDependencies": {}
+}

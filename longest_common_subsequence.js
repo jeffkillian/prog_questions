@@ -28,7 +28,7 @@ function getLongestSubSequence(s1,s2) {
 
 //getLongestSubSequence("AGGTAB","GXTXAYB") // should be MJAU
 
-getLongestSubSequence("abcdaf","acbcf")
+getLongestSubSequence("HARRY","SALLY")
 
 function printArray(array){
   for (var j=0;j<array.length;j++){
@@ -47,10 +47,13 @@ function printString(array, s1, s2) {
     const val = array[x][y]
     const leftVal = array[x-1][y]
     const topVal = array[x][y-1]
+    const upperLeftVal = array[x-1][y-1]
     // if equal
     console.log(`X:${x}, Y:${y}`)
     if (leftVal==topVal) {
-      returnVal = s1[x-1] + returnVal
+      if (upperLeftVal<val){
+        returnVal = s1[x-1] + returnVal
+      }
       x--
       y--
     }else {

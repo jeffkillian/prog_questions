@@ -1,3 +1,4 @@
+
 let memo = []
 function nth_fib(n){
   if (memo[n]) return memo[n]
@@ -6,5 +7,7 @@ function nth_fib(n){
   memo[n] = nth_fib(n-1) + nth_fib(n-2)
   return memo[n]
 }
-var ans =nth_fib(70)
-console.log(ans)
+
+
+ var ans =nth_fib(300)
+ console.log(ans)
