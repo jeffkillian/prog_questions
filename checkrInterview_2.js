@@ -36,10 +36,10 @@
 //  4. More middle name tests
 //  These serve as a sanity check of your implementation of cases 2 and 3
 
-//  let known_aliases = ['Alphonse Gabriel Capone', 'Alphonse Francis Capone']
-//  name_match(known_aliases, 'Alphonse Gabriel Capone') //=> True
-//  name_match(known_aliases, 'Alphonse Francis Capone') //=> True
-//  name_match(known_aliases, 'Alphonse Edward Capone') //=> False
+  // let known_aliases = ['Alphonse Gabriel Capone', 'Alphonse Francis Capone']
+  // name_match(known_aliases, 'Alphonse Gabriel Capone') //=> True
+  // name_match(known_aliases, 'Alphonse Francis Capone') //=> True
+  // name_match(known_aliases, 'Alphonse Edward Capone') //=> False
 
 
 //  5. Middle initial matches middle name
@@ -65,11 +65,11 @@
 
 //  'Gabriel Alphonse Capone' is a valid transposition of 'Alphonse Gabriel Capone'
 
-//  let known_aliases = ['Alphonse Gabriel Capone']
-//  name_match(known_aliases, 'Gabriel Alphonse Capone') //=> True
-//  name_match(known_aliases, 'Gabriel A Capone') //=> True
-//  name_match(known_aliases, 'Gabriel Capone') //=> True
-//  name_match(known_aliases, 'Gabriel Francis Capone') //=> False
+ let known_aliases = ['Alphonse Gabriel Capone']
+ name_match(known_aliases, 'Gabriel Alphonse Capone') //=> True
+ name_match(known_aliases, 'Gabriel A Capone') //=> True
+ name_match(known_aliases, 'Gabriel Capone') //=> True
+ name_match(known_aliases, 'Gabriel Francis Capone') //=> False
 
 
 //  7. Last name cannot be transposed
@@ -78,56 +78,71 @@
 //  'Capone Alphonse Gabriel' is NOT a valid transposition of 'Alphonse Gabriel Capone'
 
 //  let known_aliases = ['Alphonse Gabriel Capone']
-//  name_match(known_aliases, 'Alphonse Capone Gabriel') //=> False
-//  name_match(known_aliases, 'Capone Alphonse Gabriel') //=> False
-//  name_match(known_aliases, 'Capone Gabriel') //=> False  
+ name_match(known_aliases, 'Alphonse Capone Gabriel') //=> False
+ name_match(known_aliases, 'Capone Alphonse Gabriel') //=> False
+ name_match(known_aliases, 'Capone Gabriel') //=> False  
 
+function name_match(aliases,name){
+  // add more aliases to aliases
+  // only want to transpose those with three parts
+  let transposedAliases =aliases.filter(alias => {
+    return alias.split(" ").length == 3
+  })  
+  transposedAliases = transposedAliases.map(alias => {
+    return transposeName(alias)
+  })
 
-function name_match(aliases, name) {
-  // aliases should have normal and transposed names
-  let transposedAliases = aliases.map(transposeName)
-  let newAliases = [...aliases,...transposedAliases]
-  return console.log(doesNameMatch(newAliases,name) || doesNameMatch(newAliases,transposeName(name)))
-  
+  let aliasesToCompare = [...aliases,...transposedAliases]
+  let val= isNameMatch(aliasesToCompare,name) || isNameMatch(aliasesToCompare,transposeName(name))
+
+  console.log(val)
 }
 
-function doesNameMatch(aliases,name){
-  if(aliases.includes(name)) return true
-  
-  // if middle name gone on alias
-  if(aliases.includes(removeMiddleName(name))) return true
+function isNameMatch(aliases, name){
+  if (aliases.includes(name)) return true
 
 
-  // Middle name missing on record 
-  let aliasesWOMiddle = aliases.map(alias => {return removeMiddleName(alias)})
+  // middle name is missing on alias
+  let nameWOMiddle = removeMiddleName(name)
+  if (aliases.includes(nameWOMiddle)) return true
+
+  let aliasesWOMiddle = aliases.map (alias => {
+    return removeMiddleName(alias)
+  })
   if (aliasesWOMiddle.includes(name)) return true
 
-  // Middle initial matches middle name
-  // build aliases with middle initials, check against name
-  let aliasesWMidInitial = aliases.map(alias => {
-    return nameWithMiddleInitial(alias)
-  })
-  if (aliasesWMidInitial.includes(name)) return true
 
-    // build name with middle initial, check against aliasse
-  if (aliases.includes(nameWithMiddleInitial(name))) return true
+  // match names against aliases w/ middle initial
+  let aliasesWMiddleInitial = aliases.map(alias => {
+    return getNameWithMiddleInitial(alias)
+  })
+  if (aliasesWMiddleInitial.includes(name)) return true
+
+  // match aliases against names w/ middle initial
+  let nameWMiddleInitial = getNameWithMiddleInitial(name)
+  if (aliases.includes(nameWMiddleInitial)) return true
+
+
   return false
+
 }
+
 
 function removeMiddleName(name){
-  let splitName = name.split(" ")
-  return splitName[0] + " "+(splitName.length == 3 ? splitName[2]: splitName[1])
+  let nameWMiddleRemoved = name.split(' ')
+  if (nameWMiddleRemoved.length == 2) return name // No middle name
+  return `${nameWMiddleRemoved[0]} ${nameWMiddleRemoved[2]}`
 }
 
-function nameWithMiddleInitial(name){
-  let splitName = name.split(" ")
-  if (splitName.length == 2) return splitName // no middle initial
-  splitName[1] = splitName[1][0]
-  return splitName.join(" ")
-}
+function getNameWithMiddleInitial(name){
+  let nameParts = name.split(" ")
+  if (nameParts.length == 2) return name // it's only two
+  let middleInitial = nameParts[1][0]
+  return `${nameParts[0]} ${middleInitial} ${nameParts[2]}`
+} 
 
 function transposeName(name){
-  let nameArr = name.split(" ")  
-  if (nameArr.length ==2 ) return name
-  return `${nameArr[1]} ${nameArr[0]} ${nameArr[2]}` 
+  let nameParts = name.split(" ")
+  if (nameParts.length == 2) return name
+  return `${nameParts[1]} ${nameParts[0]} ${nameParts[2]}`
 }

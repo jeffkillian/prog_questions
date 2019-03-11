@@ -44,7 +44,7 @@ export class BinaryTree {
     const queue = new Queue()
     queue.add(this.root)
     let i=1
-    while (queue.size() != 0 && i<10){
+    while (queue.size() != 0 ){
       let currNode = queue.first()
       if (currNode.left) queue.add(currNode.left)
       if (currNode.right) queue.add(currNode.right)

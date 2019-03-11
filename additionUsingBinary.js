@@ -14,7 +14,5 @@ function add(a,b) {
 
 
 }
-/* 
-Subtraction?
-*/
+
 console.log(ans)
