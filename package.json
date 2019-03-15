@@ -17,6 +17,8 @@
     "url": "https://github.com/jeffkillian/prog_questions/issues"
   },
   "homepage": "https://github.com/jeffkillian/prog_questions#readme",
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^4.17.11"
+  },
   "devDependencies": {}
 }
