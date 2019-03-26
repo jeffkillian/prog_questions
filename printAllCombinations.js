@@ -36,7 +36,7 @@ function combinationUtil(r,dataIndex,data,arrayIndex){
 
 
 function printAllCombinationsBinarySolution(){
-  let inputArray = [1,2,3,5,6,7,82,4,5,484843,292,393492,49843,239823894,235,662,3233]
+  let inputArray = [1,2,3]
   //binary numbers with that many digits
   for (var i=0;i<2**(inputArray.length);i++){
     // get binary string
@@ -53,4 +53,5 @@ function printAllCombinationsBinarySolution(){
   }
 }
 
-printAllCombinations(2)
+//printAllCombinations(2)
+printAllCombinationsBinarySolution()

@@ -27,8 +27,6 @@ function knapSack(capacity,  n){
 
       //nth item not included
       knapSack(capacity,n-1)
-
-
     )
   }
 

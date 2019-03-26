@@ -26,8 +26,6 @@ def test_min_by_key():
 // console.log(minByKey("a", example3) == example3[0])
 // console.log(minByKey("b", example4) == example4[1])
 
-
-
 function minByKey(key,array){
   return firstByKey(key,"asc",array)
 }
@@ -55,9 +53,6 @@ this function first_by_key. It has much in common with min_by_key. first_by_key 
   return vals[0]
 
  }
-
-
-
 
 //Step 3: first_by_key comparator As we build increasingly rich orderings for our records,
 // we'll find it useful to extract the comparison of records into a comparator. This is a function or object 
